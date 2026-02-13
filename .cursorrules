@@ -1,0 +1,161 @@
+# .cursorrules — MasterNode AI Landing Page
+
+## Project Identity
+- **Product**: MasterNode AI — Premium AI consulting firm landing page
+- **Stack**: React 18 + Vite 7 + Tailwind CSS 3 + TypeScript 5
+- **Owner**: Sam (senior Drupal dev, learning React/TS)
+
+## Code Style Rules
+
+### TypeScript
+- Strict mode enabled (tsconfig strict: true)
+- Prefer `interface` over `type` for component props
+- Export named components, not default (except App.tsx)
+- Use `type` imports: `import type { Theme } from "@/hooks/useTheme"`
+
+### React
+- Functional components only — no class components
+- Hooks at the top of the function body
+- Destructure props in the function signature
+- Every component file has a JSDoc comment block at the top explaining purpose
+
+### File Organization
+- **One component per file** — never combine multiple exports in one .tsx
+- **Every component gets its own kebab-case directory** with:
+  - `ComponentName.tsx` — PascalCase filename
+  - `index.ts` — barrel export
+- **Import from directories**, never from files directly:
+  ```tsx
+  // ✅ Correct
+  import { Pricing } from "@/components/sections/pricing";
+  // ❌ Wrong
+  import { Pricing } from "@/components/sections/pricing/Pricing";
+  ```
+
+### Styling
+- Tailwind utility classes only — no inline CSS objects unless for dynamic CSS variables
+- Use MasterNode design tokens: `text-mn-electric`, `bg-mn-navy`, etc.
+- Never use raw hex/rgb colors — always go through CSS custom properties
+- Warm accent (`mn-warm`) on max ~15% of interactive elements
+- Use utility classes from index.css: `.glass`, `.text-gradient`, `.glow-accent`
+
+### Content
+- **All static text lives in `src/data/`** — never hardcode strings in components
+- Exception: Tailwind class strings and HTML structure stay in components
+- When adding new content, create/extend a data file, don't inline it
+
+## Directory Map
+
+```
+src/
+├── main.tsx              # Entry — do NOT add logic here
+├── App.tsx               # Section composition — add new sections here
+├── styles/index.css      # Theme vars + utilities — add new tokens here
+├── lib/utils.ts          # cn() helper — rarely needs changes
+├── hooks/                # Custom hooks
+├── data/                 # ★ CONTENT LIVES HERE — edit for copy changes ★
+├── components/
+│   ├── ui/               # shadcn primitives — don't modify
+│   ├── layout/           # announcement-bar, navbar, footer
+│   ├── sections/         # 11 page sections (see render order below)
+│   └── shared/           # Reusable: section-wrapper, animated-counter, etc.
+```
+
+## Section Render Order (in App.tsx)
+
+1. Hero
+2. CoreServices
+3. TestimonialMarquee
+4. ServicesGrid
+5. Metrics
+6. ProcessTimeline
+7. Testimonials
+8. Pricing
+9. Team
+10. CtaBanner
+11. TrustBar
+
+Floating widgets: SocialProofToast (bottom-left), ChatBotWidget (bottom-right)
+
+## Theme System
+
+Two themes toggled via `useTheme` hook. CSS variables in `src/styles/index.css`.
+
+| Context       | Dark (default)        | Light                 |
+|---------------|-----------------------|-----------------------|
+| Background    | Rich dark brown       | Clean white           |
+| Primary       | Electric gold/green   | Forest green          |
+| Secondary     | Violet/purple         | Teal                  |
+| Warm accent   | Muted rose            | Honeyed amber         |
+| Text          | Off-white creme       | Near-black            |
+
+## Key Data Files
+
+| File                | What it controls                              |
+|---------------------|-----------------------------------------------|
+| `constants.ts`      | Site name, nav, metrics, logos, FOMO messages  |
+| `pricing.ts`        | Tiers, discount (spotsClaimed), FAQ            |
+| `coreServices.ts`   | 3 flagship service cards                      |
+| `services.ts`       | 6-card services grid                          |
+| `team.ts`           | Team profiles + credentials                   |
+| `testimonials.ts`   | Client quotes for carousel                    |
+| `botImages.ts`      | Base64 chatbot avatars (dark/light)            |
+
+## Common Patterns
+
+### Adding a new section
+```bash
+mkdir src/components/sections/my-section
+```
+Create `MySection.tsx` + `index.ts`, import in `App.tsx`.
+
+### Wrapping a section with consistent layout
+```tsx
+import { SectionWrapper, SectionHeader } from "@/components/shared/section-wrapper";
+
+export function MySection() {
+  return (
+    <SectionWrapper id="my-section" bgEffect="mesh-1">
+      <SectionHeader
+        eyebrow="Label"
+        title="Main Title"
+        titleAccent="Gradient Part."
+        subtitle="Description text."
+      />
+      {/* Section content */}
+    </SectionWrapper>
+  );
+}
+```
+
+### Using warm accent (sparingly)
+```tsx
+// Icons — alternate between electric and warm
+<Icon className={index % 2 === 0 ? "text-mn-electric" : "text-mn-warm"} />
+
+// Hover borders
+className="hover:border-mn-warm/25 hover:shadow-mn-warm/5"
+
+// Background gradients
+className="from-mn-warm/20 to-mn-warm/5"
+```
+
+## Don'ts
+
+- Don't use `localStorage` or `sessionStorage` — state is ephemeral
+- Don't add new shadcn/ui components without confirming necessity
+- Don't use Next.js patterns (no `page.tsx`, no `app/` router, no SSR)
+- Don't hardcode colors — always use `mn-*` tokens
+- Don't put content strings in component files — use `src/data/`
+- Don't create monolithic multi-component files — split and barrel-export
+- Don't modify shadcn `ui/` files directly
+
+## Build & Deploy
+
+```bash
+npm install          # First time setup
+npm run dev          # Dev server with HMR
+npm run build        # Production build → /dist
+```
+
+Deploy `/dist` to Vercel, Netlify, or any static host. Framework auto-detected as Vite.
