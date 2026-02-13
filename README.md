@@ -1,3 +1,7 @@
+
+<img width="2643" height="1619" alt="image" src="https://github.com/user-attachments/assets/09dc4e11-7d7e-4be9-a048-35807b2b6ea7" />
+
+
 # MasterNode AI — Landing Page
 
 > Conversion-optimized landing page for MasterNode AI consulting firm.
