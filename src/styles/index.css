@@ -1,0 +1,202 @@
+/* ==========================================================
+   MasterNode AI Solutions — Global Styles
+   
+   DUAL THEME: 
+     Dark  = Brown & Creme
+     Light = White & Green
+   Toggle via .dark class on <html>
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── LIGHT MODE (White & Green) ── */
+@layer base {
+  :root {
+    --background: 80 20% 97%;
+    --foreground: 150 10% 12%;
+    --card: 80 15% 95%;
+    --card-foreground: 150 10% 12%;
+    --popover: 80 15% 95%;
+    --popover-foreground: 150 10% 12%;
+    --primary: 152 60% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 80 10% 90%;
+    --secondary-foreground: 150 10% 20%;
+    --muted: 80 10% 90%;
+    --muted-foreground: 150 5% 45%;
+    --accent: 152 55% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 80 10% 85%;
+    --input: 80 10% 85%;
+    --ring: 152 60% 38%;
+    --radius: 0.5rem;
+
+    /* MasterNode semantic tokens — Light */
+    --mn-bg-deep: 80 20% 97%;
+    --mn-bg-card: 0 0% 100%;
+    --mn-bg-elevated: 80 12% 94%;
+    --mn-accent-1: 152 60% 38%;
+    --mn-accent-2: 152 45% 28%;
+    --mn-accent-glow: 152, 60%, 38%;
+    --mn-text-primary: 150 10% 12%;
+    --mn-text-muted: 150 5% 45%;
+    --mn-border: 80 10% 85%;
+    --mn-success: 152 60% 38%;
+    --mn-warning: 38 92% 50%;
+    --mn-accent-warm: 38 85% 52%;
+    --mn-accent-warm-glow: 38, 85%, 52%;
+  }
+
+  /* ── DARK MODE (Brown & Creme) ── */
+  .dark {
+    --background: 25 20% 8%;
+    --foreground: 36 30% 90%;
+    --card: 25 18% 11%;
+    --card-foreground: 36 30% 90%;
+    --popover: 25 18% 11%;
+    --popover-foreground: 36 30% 90%;
+    --primary: 36 55% 65%;
+    --primary-foreground: 25 20% 8%;
+    --secondary: 25 15% 16%;
+    --secondary-foreground: 36 30% 90%;
+    --muted: 25 15% 16%;
+    --muted-foreground: 30 10% 55%;
+    --accent: 36 55% 65%;
+    --accent-foreground: 25 20% 8%;
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 36 30% 90%;
+    --border: 25 15% 20%;
+    --input: 25 15% 20%;
+    --ring: 36 55% 65%;
+
+    /* MasterNode semantic tokens — Dark */
+    --mn-bg-deep: 25 20% 8%;
+    --mn-bg-card: 25 18% 11%;
+    --mn-bg-elevated: 25 15% 15%;
+    --mn-accent-1: 36 55% 65%;
+    --mn-accent-2: 28 60% 45%;
+    --mn-accent-glow: 36, 55%, 65%;
+    --mn-text-primary: 36 30% 92%;
+    --mn-text-muted: 30 10% 55%;
+    --mn-border: 25 15% 20%;
+    --mn-success: 152 50% 45%;
+    --mn-warning: 38 92% 50%;
+    --mn-accent-warm: 355 50% 58%;
+    --mn-accent-warm-glow: 355, 50%, 58%;
+  }
+}
+
+/* ── Base Resets ── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply antialiased font-body;
+    background-color: hsl(var(--mn-bg-deep));
+    color: hsl(var(--mn-text-primary));
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+  ::selection {
+    background: hsla(var(--mn-accent-glow), 0.3);
+    color: hsl(var(--mn-text-primary));
+  }
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--mn-accent-1)), hsl(var(--mn-accent-2)));
+  }
+
+  .glass {
+    background: hsla(var(--mn-bg-card), 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsla(var(--mn-border), 0.3);
+  }
+
+  .glass-strong {
+    background: hsla(var(--mn-bg-card), 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsla(var(--mn-border), 0.4);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsla(var(--mn-accent-glow), 0.15),
+                0 0 60px hsla(var(--mn-accent-glow), 0.05);
+  }
+
+  .glow-warm {
+    box-shadow: 0 0 16px hsla(var(--mn-accent-warm-glow), 0.10),
+                0 0 48px hsla(var(--mn-accent-warm-glow), 0.03);
+  }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, hsla(var(--mn-text-muted), 0.1) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-mesh-1 {
+    background:
+      radial-gradient(ellipse at 20% 50%, hsla(var(--mn-accent-glow), 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsla(var(--mn-accent-glow), 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 65% 75%, hsla(var(--mn-accent-warm-glow), 0.025) 0%, transparent 45%);
+  }
+
+  .bg-mesh-2 {
+    background:
+      radial-gradient(ellipse at 70% 30%, hsla(var(--mn-accent-glow), 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, hsla(var(--mn-accent-glow), 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 70%, hsla(var(--mn-accent-warm-glow), 0.03) 0%, transparent 40%);
+  }
+
+  .divider-gradient {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(var(--mn-accent-glow), 0.25),
+      hsla(var(--mn-accent-warm-glow), 0.12),
+      hsla(var(--mn-accent-glow), 0.25),
+      transparent
+    );
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+  .stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+  .stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+  .stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+  .stagger-children > *:nth-child(6) { transition-delay: 500ms; }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: hsl(var(--mn-bg-deep)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--mn-bg-elevated)); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--mn-border)); }
