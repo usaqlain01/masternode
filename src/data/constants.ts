@@ -16,11 +16,12 @@ export const SITE = {
 };
 
 export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Team", href: "#team" },
+  { label: "Services", href: "/#services" },
+  { label: "Studies", href: "/#case-studies" },
+  { label: "Process", href: "/#process" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Team", href: "/#team" },
+  { label: "Demo", href: "/demo" },
 ];
 
 export const SOCIAL_LINKS = [
