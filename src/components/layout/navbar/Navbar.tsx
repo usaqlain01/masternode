@@ -10,6 +10,7 @@ import { Menu, X, Zap, Sun, Moon } from "lucide-react";
 import { SITE, NAV_LINKS } from "@/data/constants";
 import type { Theme } from "@/hooks/useTheme";
 
+
 interface NavbarProps {
   theme: Theme;
   onToggleTheme: () => void;
@@ -47,7 +48,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo — warm accent fill on icon */}
-        <a href="#" className="group flex items-center gap-2.5">
+        <a href="/" className="group flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-mn-electric to-mn-violet shadow-lg">
             <Zap className="h-5 w-5 text-mn-warm" />
           </div>
