@@ -131,3 +131,6 @@ pnpm build && upload dist/ folder
 
 ## Tech Stack
 React 18 · TypeScript 5 · Vite 7 · Tailwind CSS 3 · Lucide Icons · shadcn/ui
+
+
+## Demo Nexus Dash
