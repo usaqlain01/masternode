@@ -462,13 +462,13 @@ const NeuralCanvas: FC<NeuralCanvasProps> = ({ width = 500, height = 200 }) => {
   useEffect(() => {
     const nodes = nodesRef.current;
     const edges: {from:number;to:number;d:number}[] = [];
-    nodes.forEach((n, i) => {
-      const conns = 1 + Math.floor(Math.random() * 2);
-      for (let c = 0; c < conns; c++) {
-        const t = Math.floor(Math.random() * nodes.length);
-        if (t !== i) edges.push({ from: i, to: t, d: Math.random() * 5 });
-      }
-    });
+    nodes.forEach((_n, i) => {
+        const conns = 1 + Math.floor(Math.random() * 2);
+        for (let c = 0; c < conns; c++) {
+          const t = Math.floor(Math.random() * nodes.length);
+          if (t !== i) edges.push({ from: i, to: t, d: Math.random() * 5 });
+        }
+      });
     edgesRef.current = edges;
   }, []);
 
