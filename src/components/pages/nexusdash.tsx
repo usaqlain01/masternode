@@ -761,7 +761,7 @@ interface HeatmapProps { rows?: number; cols?: number; color?: string; }
 
 const Heatmap: FC<HeatmapProps> = ({ rows = 7, cols = 24, color = "#00f0ff" }) => {
   const data = useMemo(() =>
-    Array.from({ length: rows * cols }, (_, i) => ({ r: Math.floor(i / cols), c: i % cols, v: Math.random() })), [rows, cols]);
+    Array.from({ length: rows * cols }, (_n, i) => ({ r: Math.floor(i / cols), c: i % cols, v: Math.random() })), [rows, cols]);
   const [hovCell, setHovCell] = useState<number | null>(null);
   return (
     <div>
